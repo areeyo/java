@@ -9,7 +9,5 @@ public class Main {
 		frame.setSize(400, 650);
 		frame.setVisible(true);
 		frame.getContentPane().setLayout(new BorderLayout());
-		
-		
 	}
 }
