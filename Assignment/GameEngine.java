@@ -13,7 +13,7 @@ import javax.swing.Timer;
 public class GameEngine implements KeyListener{
 	GamePanel gp;
 		
-
+	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	private SpaceShip v;	
 	
 	private Timer timer;
@@ -37,6 +37,24 @@ public class GameEngine implements KeyListener{
 		timer.start();
 	}
 
+	private void generateEnemy(){
+ 		Enemy e = new Enemy((int)(Math.random()*390), 30);
+ 		gp.sprites.add(e);
+ 		enemies.add(e);
+ 	}
+ 	
+ 	private void process(){
+ 		generateEnemy();
+
+ 		Iterator<Enemy> e_iter = enemies.iterator();
+ 		while(e_iter.hasNext()){
+ 			Enemy e = e_iter.next();
+ 			e.proceed();
+ 		}
+ 		
+ 		gp.updateGameUI();
+ 	}
+
 	void controlVehicle(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_LEFT:
@@ -59,10 +77,6 @@ public class GameEngine implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		controlVehicle(e);
 		
-	}
-
-	private void process(){
-		gp.updateGameUI();
 	}
 	
 	@Override
