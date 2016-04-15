@@ -20,6 +20,8 @@ public class GameEngine implements KeyListener, GameReporter{
 
 	private long score = 0;
 	private double difficulty = 0.1;
+	private int time = 0;
+	private int b = 380;
 	
 	public GameEngine(GamePanel gp, SpaceShip v) {
 		this.gp = gp;
@@ -50,6 +52,11 @@ public class GameEngine implements KeyListener, GameReporter{
  		if(Math.random() < difficulty){
  			generateEnemy();
  		}
+
+ 		if(time>0){
+			
+			time--;
+		}
  		
  		Iterator<Enemy> e_iter = enemies.iterator();
  		while(e_iter.hasNext()){
@@ -70,10 +77,25 @@ public class GameEngine implements KeyListener, GameReporter{
  		for(Enemy e : enemies){
  			er = e.getRectangle();
  			if(er.intersects(vr)){
- 				die();
- 				return;
+ 				if(time == 0){
+					Timer timer2 = new Timer(200, new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent arg0) {
+
+						}
+					});
+					timer2.setRepeats(false);
+			        timer2.start();
+					b -= 380/5;
+					time = 5;
+					if(b <= 75){
+						die();
+					}
+					return;
+				}
  			}
  		}
+ 		gp.bloodSpaceShip(b);
  	}
 
 	void controlVehicle(KeyEvent e) {
@@ -97,6 +119,7 @@ public class GameEngine implements KeyListener, GameReporter{
 	}
 
 	public void die(){
+		gp.bloodSpaceShip(b);
  		timer.stop();
  	}
 

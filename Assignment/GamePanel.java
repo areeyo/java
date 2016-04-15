@@ -30,6 +30,15 @@ public class GamePanel extends JPanel {
 		repaint();
 	}
 
+	public void bloodSpaceShip(int b){
+		
+		big.setColor(Color.RED);
+		big.fillOval( 2, 0, b, 10 );
+		for(Sprite s : sprites){
+			s.draw(big);
+		}
+	}
+	
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
