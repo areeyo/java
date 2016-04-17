@@ -115,6 +115,12 @@ public class GameEngine implements KeyListener, GameReporter{
 		case KeyEvent.VK_D:
  			difficulty += 0.1;
  			break;
+ 		case KeyEvent.VK_ESCAPE:
+			timer.stop();
+			break;
+		case KeyEvent.VK_ENTER:
+			timer.start();
+			break;
 		}
 	}
 
