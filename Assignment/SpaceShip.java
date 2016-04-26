@@ -1,5 +1,7 @@
-import java.awt.Color;
+//import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
+import java.awt.Image;
 
 public class SpaceShip extends Sprite{
 
@@ -12,8 +14,10 @@ public class SpaceShip extends Sprite{
 
 	@Override
 	public void draw(Graphics2D g) {
-		g.setColor(Color.GREEN);
-		g.fillRect(x, y, width, height);
+		//g.setColor(Color.GREEN);
+		//g.fillRect(x, y, width, height);
+		Image img = Toolkit.getDefaultToolkit().getImage("space.gif");
+		g.drawImage(img, x, y, width, height, null);
 	}
 	
 	
